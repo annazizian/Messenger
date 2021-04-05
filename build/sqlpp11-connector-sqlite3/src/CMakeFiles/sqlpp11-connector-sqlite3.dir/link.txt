@@ -1,2 +1,0 @@
-/usr/bin/ar qc libsqlpp11-connector-sqlite3.a  CMakeFiles/sqlpp11-connector-sqlite3.dir/connection.cpp.o CMakeFiles/sqlpp11-connector-sqlite3.dir/bind_result.cpp.o CMakeFiles/sqlpp11-connector-sqlite3.dir/prepared_statement.cpp.o CMakeFiles/sqlpp11-connector-sqlite3.dir/detail/connection_handle.cpp.o
-/usr/bin/ranlib libsqlpp11-connector-sqlite3.a
