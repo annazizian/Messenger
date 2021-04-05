@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/socket_server.dir/socket_server.cpp.o  -o socket_server  ../sqlpp11-connector-sqlite3/src/libsqlpp11-connector-sqlite3.a -pthread /usr/lib/x86_64-linux-gnu/libsqlite3.so 

@@ -1,0 +1,3 @@
+repository='https://github.com/rbock/sqlpp11'
+module=''
+tag='origin'

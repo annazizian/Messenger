@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/sqlpp11_core-subbuild/CMakeFiles/sqlpp11_core-populate"
+		},
+		{
+			"file" : "/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/sqlpp11_core-subbuild/CMakeFiles/sqlpp11_core-populate.rule"
+		},
+		{
+			"file" : "/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/sqlpp11_core-subbuild/CMakeFiles/sqlpp11_core-populate-complete.rule"
+		},
+		{
+			"file" : "/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/sqlpp11_core-subbuild/sqlpp11_core-populate-prefix/src/sqlpp11_core-populate-stamp/sqlpp11_core-populate-install.rule"
+		},
+		{
+			"file" : "/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/sqlpp11_core-subbuild/sqlpp11_core-populate-prefix/src/sqlpp11_core-populate-stamp/sqlpp11_core-populate-mkdir.rule"
+		},
+		{
+			"file" : "/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/sqlpp11_core-subbuild/sqlpp11_core-populate-prefix/src/sqlpp11_core-populate-stamp/sqlpp11_core-populate-download.rule"
+		},
+		{
+			"file" : "/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/sqlpp11_core-subbuild/sqlpp11_core-populate-prefix/src/sqlpp11_core-populate-stamp/sqlpp11_core-populate-update.rule"
+		},
+		{
+			"file" : "/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/sqlpp11_core-subbuild/sqlpp11_core-populate-prefix/src/sqlpp11_core-populate-stamp/sqlpp11_core-populate-patch.rule"
+		},
+		{
+			"file" : "/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/sqlpp11_core-subbuild/sqlpp11_core-populate-prefix/src/sqlpp11_core-populate-stamp/sqlpp11_core-populate-configure.rule"
+		},
+		{
+			"file" : "/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/sqlpp11_core-subbuild/sqlpp11_core-populate-prefix/src/sqlpp11_core-populate-stamp/sqlpp11_core-populate-build.rule"
+		},
+		{
+			"file" : "/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/sqlpp11_core-subbuild/sqlpp11_core-populate-prefix/src/sqlpp11_core-populate-stamp/sqlpp11_core-populate-test.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"sqlpp11_core-populate"
+		],
+		"name" : "sqlpp11_core-populate"
+	}
+}
