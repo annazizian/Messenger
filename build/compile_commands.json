@@ -1,22 +1,22 @@
 [
 {
   "directory": "/mnt/c/Users/Anna/Desktop/Messenger/build/sqlpp11-connector-sqlite3/src",
-  "command": "/usr/bin/c++  -DONLY_C_LOCALE=0 -I/mnt/c/Users/Anna/Desktop/Messenger/sqlpp11-connector-sqlite3/include -I/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/sqlpp11_core-src/include -I/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/date-src/include  -g   -std=gnu++11 -o CMakeFiles/sqlpp11-connector-sqlite3.dir/connection.cpp.o -c /mnt/c/Users/Anna/Desktop/Messenger/sqlpp11-connector-sqlite3/src/connection.cpp",
+  "command": "/usr/bin/c++  -DONLY_C_LOCALE=0 -I/mnt/c/Users/Anna/Desktop/Messenger/sqlpp11-connector-sqlite3/include -I/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/sqlpp11_core-src/include -I/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/date-src/include  -g   -std=gnu++17 -o CMakeFiles/sqlpp11-connector-sqlite3.dir/connection.cpp.o -c /mnt/c/Users/Anna/Desktop/Messenger/sqlpp11-connector-sqlite3/src/connection.cpp",
   "file": "/mnt/c/Users/Anna/Desktop/Messenger/sqlpp11-connector-sqlite3/src/connection.cpp"
 },
 {
   "directory": "/mnt/c/Users/Anna/Desktop/Messenger/build/sqlpp11-connector-sqlite3/src",
-  "command": "/usr/bin/c++  -DONLY_C_LOCALE=0 -I/mnt/c/Users/Anna/Desktop/Messenger/sqlpp11-connector-sqlite3/include -I/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/sqlpp11_core-src/include -I/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/date-src/include  -g   -std=gnu++11 -o CMakeFiles/sqlpp11-connector-sqlite3.dir/bind_result.cpp.o -c /mnt/c/Users/Anna/Desktop/Messenger/sqlpp11-connector-sqlite3/src/bind_result.cpp",
+  "command": "/usr/bin/c++  -DONLY_C_LOCALE=0 -I/mnt/c/Users/Anna/Desktop/Messenger/sqlpp11-connector-sqlite3/include -I/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/sqlpp11_core-src/include -I/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/date-src/include  -g   -std=gnu++17 -o CMakeFiles/sqlpp11-connector-sqlite3.dir/bind_result.cpp.o -c /mnt/c/Users/Anna/Desktop/Messenger/sqlpp11-connector-sqlite3/src/bind_result.cpp",
   "file": "/mnt/c/Users/Anna/Desktop/Messenger/sqlpp11-connector-sqlite3/src/bind_result.cpp"
 },
 {
   "directory": "/mnt/c/Users/Anna/Desktop/Messenger/build/sqlpp11-connector-sqlite3/src",
-  "command": "/usr/bin/c++  -DONLY_C_LOCALE=0 -I/mnt/c/Users/Anna/Desktop/Messenger/sqlpp11-connector-sqlite3/include -I/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/sqlpp11_core-src/include -I/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/date-src/include  -g   -std=gnu++11 -o CMakeFiles/sqlpp11-connector-sqlite3.dir/prepared_statement.cpp.o -c /mnt/c/Users/Anna/Desktop/Messenger/sqlpp11-connector-sqlite3/src/prepared_statement.cpp",
+  "command": "/usr/bin/c++  -DONLY_C_LOCALE=0 -I/mnt/c/Users/Anna/Desktop/Messenger/sqlpp11-connector-sqlite3/include -I/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/sqlpp11_core-src/include -I/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/date-src/include  -g   -std=gnu++17 -o CMakeFiles/sqlpp11-connector-sqlite3.dir/prepared_statement.cpp.o -c /mnt/c/Users/Anna/Desktop/Messenger/sqlpp11-connector-sqlite3/src/prepared_statement.cpp",
   "file": "/mnt/c/Users/Anna/Desktop/Messenger/sqlpp11-connector-sqlite3/src/prepared_statement.cpp"
 },
 {
   "directory": "/mnt/c/Users/Anna/Desktop/Messenger/build/sqlpp11-connector-sqlite3/src",
-  "command": "/usr/bin/c++  -DONLY_C_LOCALE=0 -I/mnt/c/Users/Anna/Desktop/Messenger/sqlpp11-connector-sqlite3/include -I/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/sqlpp11_core-src/include -I/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/date-src/include  -g   -std=gnu++11 -o CMakeFiles/sqlpp11-connector-sqlite3.dir/detail/connection_handle.cpp.o -c /mnt/c/Users/Anna/Desktop/Messenger/sqlpp11-connector-sqlite3/src/detail/connection_handle.cpp",
+  "command": "/usr/bin/c++  -DONLY_C_LOCALE=0 -I/mnt/c/Users/Anna/Desktop/Messenger/sqlpp11-connector-sqlite3/include -I/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/sqlpp11_core-src/include -I/mnt/c/Users/Anna/Desktop/Messenger/build/_deps/date-src/include  -g   -std=gnu++17 -o CMakeFiles/sqlpp11-connector-sqlite3.dir/detail/connection_handle.cpp.o -c /mnt/c/Users/Anna/Desktop/Messenger/sqlpp11-connector-sqlite3/src/detail/connection_handle.cpp",
   "file": "/mnt/c/Users/Anna/Desktop/Messenger/sqlpp11-connector-sqlite3/src/detail/connection_handle.cpp"
 },
 {
