@@ -252,6 +252,7 @@ sqlpp11-connector-sqlite3/src/clean: sqlpp11-connector-sqlite3/src/CMakeFiles/sq
 src/all: src/CMakeFiles/socket_client.dir/all
 src/all: src/CMakeFiles/socket_server.dir/all
 src/all: src/CMakeFiles/db_generator.dir/all
+src/all: src/CMakeFiles/messenger.dir/all
 
 .PHONY : src/all
 
@@ -264,6 +265,7 @@ src/preinstall:
 src/clean: src/CMakeFiles/socket_client.dir/clean
 src/clean: src/CMakeFiles/socket_server.dir/clean
 src/clean: src/CMakeFiles/db_generator.dir/clean
+src/clean: src/CMakeFiles/messenger.dir/clean
 
 .PHONY : src/clean
 
@@ -1030,7 +1032,7 @@ sqlpp11-connector-sqlite3/CMakeFiles/NightlyMemCheck.dir/clean:
 sqlpp11-connector-sqlite3/src/CMakeFiles/sqlpp11-connector-sqlite3.dir/all:
 	$(MAKE) -f sqlpp11-connector-sqlite3/src/CMakeFiles/sqlpp11-connector-sqlite3.dir/build.make sqlpp11-connector-sqlite3/src/CMakeFiles/sqlpp11-connector-sqlite3.dir/depend
 	$(MAKE) -f sqlpp11-connector-sqlite3/src/CMakeFiles/sqlpp11-connector-sqlite3.dir/build.make sqlpp11-connector-sqlite3/src/CMakeFiles/sqlpp11-connector-sqlite3.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/Anna/Desktop/Messenger/build/CMakeFiles --progress-num=7,8,9,10,11 "Built target sqlpp11-connector-sqlite3"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/Anna/Desktop/Messenger/build/CMakeFiles --progress-num=14,15,16,17,18 "Built target sqlpp11-connector-sqlite3"
 .PHONY : sqlpp11-connector-sqlite3/src/CMakeFiles/sqlpp11-connector-sqlite3.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1057,7 +1059,7 @@ sqlpp11-connector-sqlite3/src/CMakeFiles/sqlpp11-connector-sqlite3.dir/clean:
 src/CMakeFiles/socket_client.dir/all:
 	$(MAKE) -f src/CMakeFiles/socket_client.dir/build.make src/CMakeFiles/socket_client.dir/depend
 	$(MAKE) -f src/CMakeFiles/socket_client.dir/build.make src/CMakeFiles/socket_client.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/Anna/Desktop/Messenger/build/CMakeFiles --progress-num=3,4 "Built target socket_client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/Anna/Desktop/Messenger/build/CMakeFiles --progress-num=10,11 "Built target socket_client"
 .PHONY : src/CMakeFiles/socket_client.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1082,14 +1084,15 @@ src/CMakeFiles/socket_client.dir/clean:
 
 # All Build rule for target.
 src/CMakeFiles/socket_server.dir/all: sqlpp11-connector-sqlite3/src/CMakeFiles/sqlpp11-connector-sqlite3.dir/all
+src/CMakeFiles/socket_server.dir/all: src/CMakeFiles/messenger.dir/all
 	$(MAKE) -f src/CMakeFiles/socket_server.dir/build.make src/CMakeFiles/socket_server.dir/depend
 	$(MAKE) -f src/CMakeFiles/socket_server.dir/build.make src/CMakeFiles/socket_server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/Anna/Desktop/Messenger/build/CMakeFiles --progress-num=5,6 "Built target socket_server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/Anna/Desktop/Messenger/build/CMakeFiles --progress-num=12,13 "Built target socket_server"
 .PHONY : src/CMakeFiles/socket_server.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/socket_server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Anna/Desktop/Messenger/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Anna/Desktop/Messenger/build/CMakeFiles 14
 	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/socket_server.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Anna/Desktop/Messenger/build/CMakeFiles 0
 .PHONY : src/CMakeFiles/socket_server.dir/rule
@@ -1109,6 +1112,7 @@ src/CMakeFiles/socket_server.dir/clean:
 
 # All Build rule for target.
 src/CMakeFiles/db_generator.dir/all: sqlpp11-connector-sqlite3/src/CMakeFiles/sqlpp11-connector-sqlite3.dir/all
+src/CMakeFiles/db_generator.dir/all: src/CMakeFiles/messenger.dir/all
 	$(MAKE) -f src/CMakeFiles/db_generator.dir/build.make src/CMakeFiles/db_generator.dir/depend
 	$(MAKE) -f src/CMakeFiles/db_generator.dir/build.make src/CMakeFiles/db_generator.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/Anna/Desktop/Messenger/build/CMakeFiles --progress-num=1,2 "Built target db_generator"
@@ -1116,7 +1120,7 @@ src/CMakeFiles/db_generator.dir/all: sqlpp11-connector-sqlite3/src/CMakeFiles/sq
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/db_generator.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Anna/Desktop/Messenger/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Anna/Desktop/Messenger/build/CMakeFiles 14
 	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/db_generator.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Anna/Desktop/Messenger/build/CMakeFiles 0
 .PHONY : src/CMakeFiles/db_generator.dir/rule
@@ -1130,6 +1134,33 @@ db_generator: src/CMakeFiles/db_generator.dir/rule
 src/CMakeFiles/db_generator.dir/clean:
 	$(MAKE) -f src/CMakeFiles/db_generator.dir/build.make src/CMakeFiles/db_generator.dir/clean
 .PHONY : src/CMakeFiles/db_generator.dir/clean
+
+#=============================================================================
+# Target rules for target src/CMakeFiles/messenger.dir
+
+# All Build rule for target.
+src/CMakeFiles/messenger.dir/all: sqlpp11-connector-sqlite3/src/CMakeFiles/sqlpp11-connector-sqlite3.dir/all
+	$(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/depend
+	$(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/Anna/Desktop/Messenger/build/CMakeFiles --progress-num=3,4,5,6,7,8,9 "Built target messenger"
+.PHONY : src/CMakeFiles/messenger.dir/all
+
+# Build rule for subdir invocation for target.
+src/CMakeFiles/messenger.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Anna/Desktop/Messenger/build/CMakeFiles 12
+	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/messenger.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Anna/Desktop/Messenger/build/CMakeFiles 0
+.PHONY : src/CMakeFiles/messenger.dir/rule
+
+# Convenience name for target.
+messenger: src/CMakeFiles/messenger.dir/rule
+
+.PHONY : messenger
+
+# clean rule for target.
+src/CMakeFiles/messenger.dir/clean:
+	$(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/clean
+.PHONY : src/CMakeFiles/messenger.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

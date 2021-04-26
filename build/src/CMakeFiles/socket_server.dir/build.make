@@ -79,6 +79,7 @@ socket_server_EXTERNAL_OBJECTS =
 
 src/socket_server: src/CMakeFiles/socket_server.dir/socket_server.cpp.o
 src/socket_server: src/CMakeFiles/socket_server.dir/build.make
+src/socket_server: src/libmessenger.a
 src/socket_server: sqlpp11-connector-sqlite3/src/libsqlpp11-connector-sqlite3.a
 src/socket_server: /usr/lib/x86_64-linux-gnu/libsqlite3.so
 src/socket_server: src/CMakeFiles/socket_server.dir/link.txt

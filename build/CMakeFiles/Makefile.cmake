@@ -189,4 +189,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "src/CMakeFiles/socket_client.dir/DependInfo.cmake"
   "src/CMakeFiles/socket_server.dir/DependInfo.cmake"
   "src/CMakeFiles/db_generator.dir/DependInfo.cmake"
+  "src/CMakeFiles/messenger.dir/DependInfo.cmake"
   )

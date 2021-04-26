@@ -8,21 +8,14 @@ set(CMAKE_DEPENDS_CHECK_CXX
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
-# Preprocessor definitions for this target.
-set(CMAKE_TARGET_DEFINITIONS_CXX
-  "ONLY_C_LOCALE=0"
-  )
-
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "../include"
-  "_deps/sqlpp11_core-src/include"
-  "_deps/date-src/include"
-  "../sqlpp11-connector-sqlite3/include"
+  "../src/../include"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
+  "/mnt/c/Users/Anna/Desktop/Messenger/build/src/CMakeFiles/messenger.dir/DependInfo.cmake"
   "/mnt/c/Users/Anna/Desktop/Messenger/build/sqlpp11-connector-sqlite3/src/CMakeFiles/sqlpp11-connector-sqlite3.dir/DependInfo.cmake"
   )
 

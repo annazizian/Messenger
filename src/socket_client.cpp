@@ -5,7 +5,6 @@
 #include <unistd.h>
 #include <netinet/in.h>
 #include <arpa/inet.h> 
-#include "helpers.h"
 
 #define ERROR(msg) std::cerr << "Client Error: " << msg << ". "<< strerror(errno) << std::endl;
 #define LOG(msg) std::cout << "Client Log: " << msg << std::endl;
@@ -42,11 +41,6 @@ int main()
     std::string username, guid;
     std::cout << "Username: ";
     std::cin >> username >> guid; 
-    if (guid == "!")
-    {
-        guid = generate_guid();
-        std::cout << guid << std::endl;
-    }
     memset(buf, 0, buflen);
     std::string send_msg = "";
     send_msg += username;
@@ -79,7 +73,7 @@ int main()
             std::cin >> reciever; 
             send_msg += reciever;
             send_msg += "\n";
-            int ts = get_ts();
+            int ts = 1612135435;  //FIXME:
             send_msg += std::to_string(ts);
             send_msg += "\n";
             std::cout << "Message: ";

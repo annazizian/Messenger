@@ -1,0 +1,527 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						9
+					],
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "sqlpp11-connector-sqlite3",
+					"childIndexes" : 
+					[
+						2,
+						8
+					],
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "sqlpp11-connector-sqlite3",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27
+					]
+				},
+				{
+					"build" : "sqlpp11-connector-sqlite3/dependencies",
+					"childIndexes" : 
+					[
+						3
+					],
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "sqlpp11-connector-sqlite3/dependencies"
+				},
+				{
+					"build" : "sqlpp11-connector-sqlite3/dependencies/sqlpp11",
+					"childIndexes" : 
+					[
+						4
+					],
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 1,
+					"source" : "sqlpp11-connector-sqlite3/dependencies/sqlpp11"
+				},
+				{
+					"build" : "_deps/sqlpp11_core-build",
+					"childIndexes" : 
+					[
+						5
+					],
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 2,
+					"source" : "build/_deps/sqlpp11_core-src"
+				},
+				{
+					"build" : "_deps/sqlpp11_core-build/dependencies",
+					"childIndexes" : 
+					[
+						6
+					],
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"parentIndex" : 4,
+					"projectIndex" : 2,
+					"source" : "build/_deps/sqlpp11_core-src/dependencies"
+				},
+				{
+					"build" : "_deps/sqlpp11_core-build/dependencies/hinnant_date",
+					"childIndexes" : 
+					[
+						7
+					],
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"parentIndex" : 5,
+					"projectIndex" : 2,
+					"source" : "build/_deps/sqlpp11_core-src/dependencies/hinnant_date"
+				},
+				{
+					"build" : "_deps/date-build",
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.7"
+					},
+					"parentIndex" : 6,
+					"projectIndex" : 3,
+					"source" : "build/_deps/date-src"
+				},
+				{
+					"build" : "sqlpp11-connector-sqlite3/src",
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "sqlpp11-connector-sqlite3/src",
+					"targetIndexes" : 
+					[
+						32
+					]
+				},
+				{
+					"build" : "src",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src",
+					"targetIndexes" : 
+					[
+						28,
+						29,
+						30,
+						31
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0,
+						9
+					],
+					"name" : "Messenger",
+					"targetIndexes" : 
+					[
+						28,
+						29,
+						30,
+						31
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						2
+					],
+					"directoryIndexes" : 
+					[
+						1,
+						2,
+						3,
+						8
+					],
+					"name" : "sqlpp11-connector-sqlite3",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27,
+						32
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						3
+					],
+					"directoryIndexes" : 
+					[
+						4,
+						5,
+						6
+					],
+					"name" : "sqlpp11",
+					"parentIndex" : 1
+				},
+				{
+					"directoryIndexes" : 
+					[
+						7
+					],
+					"name" : "date",
+					"parentIndex" : 2
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "Continuous::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-Continuous-Debug-101cf6232a378222ec2e.json",
+					"name" : "Continuous",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ContinuousBuild::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-ContinuousBuild-Debug-4afb4d4c3d06f1324a34.json",
+					"name" : "ContinuousBuild",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ContinuousConfigure::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-ContinuousConfigure-Debug-8ae2c18a2e0738c0b48c.json",
+					"name" : "ContinuousConfigure",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ContinuousCoverage::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-ContinuousCoverage-Debug-276b47fd2bb4fc7e5c30.json",
+					"name" : "ContinuousCoverage",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ContinuousMemCheck::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-ContinuousMemCheck-Debug-b5017015894f914afc96.json",
+					"name" : "ContinuousMemCheck",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ContinuousStart::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-ContinuousStart-Debug-21ceed59b3d791ae69de.json",
+					"name" : "ContinuousStart",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ContinuousSubmit::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-ContinuousSubmit-Debug-aa6de7460e172e1f9e78.json",
+					"name" : "ContinuousSubmit",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ContinuousTest::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-ContinuousTest-Debug-8019dcf02920307b13f3.json",
+					"name" : "ContinuousTest",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ContinuousUpdate::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-ContinuousUpdate-Debug-72d2ae2d770e59e6b3d4.json",
+					"name" : "ContinuousUpdate",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "Experimental::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-Experimental-Debug-8cd4965e470585bf06ef.json",
+					"name" : "Experimental",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ExperimentalBuild::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-ExperimentalBuild-Debug-d18b88e6c013193c25de.json",
+					"name" : "ExperimentalBuild",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ExperimentalConfigure::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-ExperimentalConfigure-Debug-2626d15ec99d51319a24.json",
+					"name" : "ExperimentalConfigure",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ExperimentalCoverage::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-ExperimentalCoverage-Debug-4477779415cb3c75721f.json",
+					"name" : "ExperimentalCoverage",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ExperimentalMemCheck::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-ExperimentalMemCheck-Debug-6b1ce77025b1172f3732.json",
+					"name" : "ExperimentalMemCheck",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ExperimentalStart::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-ExperimentalStart-Debug-2ed0ad029b58f2be2cc2.json",
+					"name" : "ExperimentalStart",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ExperimentalSubmit::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-ExperimentalSubmit-Debug-c493dbdec69a0acad45e.json",
+					"name" : "ExperimentalSubmit",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ExperimentalTest::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-ExperimentalTest-Debug-79fe037b05ce8bc3f162.json",
+					"name" : "ExperimentalTest",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ExperimentalUpdate::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-ExperimentalUpdate-Debug-69318610014bdfd1eebe.json",
+					"name" : "ExperimentalUpdate",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "Nightly::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-Nightly-Debug-afce97f8f992445fbbbb.json",
+					"name" : "Nightly",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "NightlyBuild::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-NightlyBuild-Debug-c746bb29af4aff5d77fe.json",
+					"name" : "NightlyBuild",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "NightlyConfigure::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-NightlyConfigure-Debug-2ef1dd0ff6aadd4f85e0.json",
+					"name" : "NightlyConfigure",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "NightlyCoverage::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-NightlyCoverage-Debug-2a6e650156d889716b21.json",
+					"name" : "NightlyCoverage",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "NightlyMemCheck::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-NightlyMemCheck-Debug-52e4e8aeadd95fa26665.json",
+					"name" : "NightlyMemCheck",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "NightlyMemoryCheck::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-NightlyMemoryCheck-Debug-18faaf60709d71e98a65.json",
+					"name" : "NightlyMemoryCheck",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "NightlyStart::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-NightlyStart-Debug-10452abc77965be9e736.json",
+					"name" : "NightlyStart",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "NightlySubmit::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-NightlySubmit-Debug-6037f198578295390ac3.json",
+					"name" : "NightlySubmit",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "NightlyTest::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-NightlyTest-Debug-8440d3832f8ef55494ea.json",
+					"name" : "NightlyTest",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "NightlyUpdate::@2d4a0241a9d67d90e26c",
+					"jsonFile" : "target-NightlyUpdate-Debug-4e7aa876447550dd042e.json",
+					"name" : "NightlyUpdate",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 9,
+					"id" : "db_generator::@145eef247bfb46b6828c",
+					"jsonFile" : "target-db_generator-Debug-6ca8ccfe5a3e99bd2ba7.json",
+					"name" : "db_generator",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 9,
+					"id" : "messenger::@145eef247bfb46b6828c",
+					"jsonFile" : "target-messenger-Debug-da394222363cb35c0afa.json",
+					"name" : "messenger",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 9,
+					"id" : "socket_client::@145eef247bfb46b6828c",
+					"jsonFile" : "target-socket_client-Debug-0e7bdd38ed26c6bcc4b7.json",
+					"name" : "socket_client",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 9,
+					"id" : "socket_server::@145eef247bfb46b6828c",
+					"jsonFile" : "target-socket_server-Debug-61e9f2af919b7e222d9b.json",
+					"name" : "socket_server",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 8,
+					"id" : "sqlpp11-connector-sqlite3::@c3017ba2af454881a678",
+					"jsonFile" : "target-sqlpp11-connector-sqlite3-Debug-766c2e00ff66e3d11cf2.json",
+					"name" : "sqlpp11-connector-sqlite3",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/mnt/c/Users/Anna/Desktop/Messenger/build",
+		"source" : "/mnt/c/Users/Anna/Desktop/Messenger"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

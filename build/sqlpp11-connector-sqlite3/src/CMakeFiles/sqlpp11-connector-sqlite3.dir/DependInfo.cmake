@@ -18,7 +18,6 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "../include"
   "../sqlpp11-connector-sqlite3/include"
   "_deps/sqlpp11_core-src/include"
   "_deps/date-src/include"

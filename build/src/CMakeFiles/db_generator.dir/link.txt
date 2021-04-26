@@ -1,1 +1,1 @@
-/usr/bin/c++     CMakeFiles/db_generator.dir/db_generator.cpp.o  -o db_generator  ../sqlpp11-connector-sqlite3/src/libsqlpp11-connector-sqlite3.a /usr/lib/x86_64-linux-gnu/libsqlite3.so 
+/usr/bin/c++  -g   CMakeFiles/db_generator.dir/db_generator.cpp.o  -o db_generator  libmessenger.a ../sqlpp11-connector-sqlite3/src/libsqlpp11-connector-sqlite3.a /usr/lib/x86_64-linux-gnu/libsqlite3.so 

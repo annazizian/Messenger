@@ -572,6 +572,19 @@ db_generator/fast:
 	$(MAKE) -f src/CMakeFiles/db_generator.dir/build.make src/CMakeFiles/db_generator.dir/build
 .PHONY : db_generator/fast
 
+#=============================================================================
+# Target rules for targets named messenger
+
+# Build rule for target.
+messenger: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 messenger
+.PHONY : messenger
+
+# fast build rule for target.
+messenger/fast:
+	$(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/build
+.PHONY : messenger/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -616,6 +629,7 @@ help:
 	@echo "... socket_client"
 	@echo "... socket_server"
 	@echo "... db_generator"
+	@echo "... messenger"
 .PHONY : help
 
 

@@ -4,9 +4,11 @@
 #include <unistd.h>
 #include <thread>
 #include <vector>
-#include "connection.h"
-#include "user.h"
-#include "message.h"
+#include <messenger/connection.h>
+#include <messenger/user.h>
+#include <messenger/message.h>
+#include <messenger/MessageQueue.h>
+#include <messenger/handlers.h>
 
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -14,6 +16,8 @@
 
 #define ERROR(msg) std::cerr << "Server Error: " << msg << ". "<< strerror(errno) << std::endl;
 #define LOG(msg) std::cout << "Server Log: " << msg << std::endl;
+
+MessageQueue messageQueue;
 
 void listener(int client_sock_fd) //amen angam nor kpneluc asum a es clienty kpel a
 {
@@ -82,48 +86,9 @@ void listener(int client_sock_fd) //amen angam nor kpneluc asum a es clienty kpe
             send(client_sock_fd, buf, buflen, 0);
             continue;
         }
-        /*
-            e.g.    reciever_username
-                    1689465135
-                    barev :D
-        */
-        if (message.find('\n') == std::string::npos)
-        {
-            ERROR("Wrong format");
-            memset(buf, 0, buflen);
-            strcpy(buf, "Wrong format");
-            send(client_sock_fd, buf, strlen(buf), 0);
-            shutdown(client_sock_fd, SHUT_RDWR);
-            close(client_sock_fd);
-            return;
-        }
-        ind = message.find('\n');
-        std::string reciever = message.substr(0, ind); 
-        if (message.find('\n', ind + 1) == std::string::npos)
-        {
-            ERROR("Wrong format");
-            memset(buf, 0, buflen);
-            strcpy(buf, "Wrong format");
-            send(client_sock_fd, buf, strlen(buf), 0);
-            shutdown(client_sock_fd, SHUT_RDWR);
-            close(client_sock_fd);
-            return;
-        }
-        int ind2 = message.find("\n", ind + 1);
-        // TODO: Exception handling
-        int ts = std::stoi(message.substr(ind + 1, ind2 - ind - 1)); // stoi - string to int
-        std::string content = message.substr(ind2 + 1);
-        if (!user_exists(reciever))
-        {
-            ERROR("Wrong reciever");
-            memset(buf, 0, buflen);
-            strcpy(buf, "Wrong reciever");
-            send(client_sock_fd, buf, strlen(buf), 0);
-            shutdown(client_sock_fd, SHUT_RDWR);
-            close(client_sock_fd);
-            return;
-        }
-        sendMessage(content, reciever, username, ts);
+        message = username + "\n" + message; 
+        messageQueue.AddMessage(message);
+
         memset(buf, 0, buflen);
         strcpy(buf, "OK");
         send(client_sock_fd, buf, strlen(buf), 0);
@@ -136,6 +101,7 @@ void listener(int client_sock_fd) //amen angam nor kpneluc asum a es clienty kpe
 int main()
 { 
     Connection("db.sqlite", true);
+    messageQueue.RegisterHandler(&storeMessage);
     int socket_fd = socket(AF_INET, SOCK_STREAM, 0);
     if(socket_fd == -1)
     {

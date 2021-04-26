@@ -90,3 +90,4 @@
 /mnt/c/Users/Anna/Desktop/Messenger/build/src/CMakeFiles/socket_client.dir
 /mnt/c/Users/Anna/Desktop/Messenger/build/src/CMakeFiles/socket_server.dir
 /mnt/c/Users/Anna/Desktop/Messenger/build/src/CMakeFiles/db_generator.dir
+/mnt/c/Users/Anna/Desktop/Messenger/build/src/CMakeFiles/messenger.dir

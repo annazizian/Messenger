@@ -79,6 +79,7 @@ db_generator_EXTERNAL_OBJECTS =
 
 src/db_generator: src/CMakeFiles/db_generator.dir/db_generator.cpp.o
 src/db_generator: src/CMakeFiles/db_generator.dir/build.make
+src/db_generator: src/libmessenger.a
 src/db_generator: sqlpp11-connector-sqlite3/src/libsqlpp11-connector-sqlite3.a
 src/db_generator: /usr/lib/x86_64-linux-gnu/libsqlite3.so
 src/db_generator: src/CMakeFiles/db_generator.dir/link.txt

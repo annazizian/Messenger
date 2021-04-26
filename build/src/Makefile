@@ -201,6 +201,75 @@ db_generator/fast:
 	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/db_generator.dir/build.make src/CMakeFiles/db_generator.dir/build
 .PHONY : db_generator/fast
 
+# Convenience name for target.
+src/CMakeFiles/messenger.dir/rule:
+	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/messenger.dir/rule
+.PHONY : src/CMakeFiles/messenger.dir/rule
+
+# Convenience name for target.
+messenger: src/CMakeFiles/messenger.dir/rule
+
+.PHONY : messenger
+
+# fast build rule for target.
+messenger/fast:
+	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/build
+.PHONY : messenger/fast
+
+MessageQueue.o: MessageQueue.cpp.o
+
+.PHONY : MessageQueue.o
+
+# target to build an object file
+MessageQueue.cpp.o:
+	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/MessageQueue.cpp.o
+.PHONY : MessageQueue.cpp.o
+
+MessageQueue.i: MessageQueue.cpp.i
+
+.PHONY : MessageQueue.i
+
+# target to preprocess a source file
+MessageQueue.cpp.i:
+	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/MessageQueue.cpp.i
+.PHONY : MessageQueue.cpp.i
+
+MessageQueue.s: MessageQueue.cpp.s
+
+.PHONY : MessageQueue.s
+
+# target to generate assembly for a file
+MessageQueue.cpp.s:
+	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/MessageQueue.cpp.s
+.PHONY : MessageQueue.cpp.s
+
+connection.o: connection.cpp.o
+
+.PHONY : connection.o
+
+# target to build an object file
+connection.cpp.o:
+	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/connection.cpp.o
+.PHONY : connection.cpp.o
+
+connection.i: connection.cpp.i
+
+.PHONY : connection.i
+
+# target to preprocess a source file
+connection.cpp.i:
+	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/connection.cpp.i
+.PHONY : connection.cpp.i
+
+connection.s: connection.cpp.s
+
+.PHONY : connection.s
+
+# target to generate assembly for a file
+connection.cpp.s:
+	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/connection.cpp.s
+.PHONY : connection.cpp.s
+
 db_generator.o: db_generator.cpp.o
 
 .PHONY : db_generator.o
@@ -227,6 +296,87 @@ db_generator.s: db_generator.cpp.s
 db_generator.cpp.s:
 	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/db_generator.dir/build.make src/CMakeFiles/db_generator.dir/db_generator.cpp.s
 .PHONY : db_generator.cpp.s
+
+handlers.o: handlers.cpp.o
+
+.PHONY : handlers.o
+
+# target to build an object file
+handlers.cpp.o:
+	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/handlers.cpp.o
+.PHONY : handlers.cpp.o
+
+handlers.i: handlers.cpp.i
+
+.PHONY : handlers.i
+
+# target to preprocess a source file
+handlers.cpp.i:
+	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/handlers.cpp.i
+.PHONY : handlers.cpp.i
+
+handlers.s: handlers.cpp.s
+
+.PHONY : handlers.s
+
+# target to generate assembly for a file
+handlers.cpp.s:
+	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/handlers.cpp.s
+.PHONY : handlers.cpp.s
+
+helpers.o: helpers.cpp.o
+
+.PHONY : helpers.o
+
+# target to build an object file
+helpers.cpp.o:
+	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/helpers.cpp.o
+.PHONY : helpers.cpp.o
+
+helpers.i: helpers.cpp.i
+
+.PHONY : helpers.i
+
+# target to preprocess a source file
+helpers.cpp.i:
+	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/helpers.cpp.i
+.PHONY : helpers.cpp.i
+
+helpers.s: helpers.cpp.s
+
+.PHONY : helpers.s
+
+# target to generate assembly for a file
+helpers.cpp.s:
+	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/helpers.cpp.s
+.PHONY : helpers.cpp.s
+
+message.o: message.cpp.o
+
+.PHONY : message.o
+
+# target to build an object file
+message.cpp.o:
+	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/message.cpp.o
+.PHONY : message.cpp.o
+
+message.i: message.cpp.i
+
+.PHONY : message.i
+
+# target to preprocess a source file
+message.cpp.i:
+	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/message.cpp.i
+.PHONY : message.cpp.i
+
+message.s: message.cpp.s
+
+.PHONY : message.s
+
+# target to generate assembly for a file
+message.cpp.s:
+	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/message.cpp.s
+.PHONY : message.cpp.s
 
 socket_client.o: socket_client.cpp.o
 
@@ -282,6 +432,33 @@ socket_server.cpp.s:
 	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/socket_server.dir/build.make src/CMakeFiles/socket_server.dir/socket_server.cpp.s
 .PHONY : socket_server.cpp.s
 
+user.o: user.cpp.o
+
+.PHONY : user.o
+
+# target to build an object file
+user.cpp.o:
+	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/user.cpp.o
+.PHONY : user.cpp.o
+
+user.i: user.cpp.i
+
+.PHONY : user.i
+
+# target to preprocess a source file
+user.cpp.i:
+	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/user.cpp.i
+.PHONY : user.cpp.i
+
+user.s: user.cpp.s
+
+.PHONY : user.s
+
+# target to generate assembly for a file
+user.cpp.s:
+	cd /mnt/c/Users/Anna/Desktop/Messenger/build && $(MAKE) -f src/CMakeFiles/messenger.dir/build.make src/CMakeFiles/messenger.dir/user.cpp.s
+.PHONY : user.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -297,15 +474,34 @@ help:
 	@echo "... socket_client"
 	@echo "... socket_server"
 	@echo "... db_generator"
+	@echo "... messenger"
+	@echo "... MessageQueue.o"
+	@echo "... MessageQueue.i"
+	@echo "... MessageQueue.s"
+	@echo "... connection.o"
+	@echo "... connection.i"
+	@echo "... connection.s"
 	@echo "... db_generator.o"
 	@echo "... db_generator.i"
 	@echo "... db_generator.s"
+	@echo "... handlers.o"
+	@echo "... handlers.i"
+	@echo "... handlers.s"
+	@echo "... helpers.o"
+	@echo "... helpers.i"
+	@echo "... helpers.s"
+	@echo "... message.o"
+	@echo "... message.i"
+	@echo "... message.s"
 	@echo "... socket_client.o"
 	@echo "... socket_client.i"
 	@echo "... socket_client.s"
 	@echo "... socket_server.o"
 	@echo "... socket_server.i"
 	@echo "... socket_server.s"
+	@echo "... user.o"
+	@echo "... user.i"
+	@echo "... user.s"
 .PHONY : help
 
 
