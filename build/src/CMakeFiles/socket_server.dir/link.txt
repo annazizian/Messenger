@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/socket_server.dir/socket_server.cpp.o  -o socket_server  libmessenger.a -pthread ../sqlpp11-connector-sqlite3/src/libsqlpp11-connector-sqlite3.a /usr/lib/x86_64-linux-gnu/libsqlite3.so 
