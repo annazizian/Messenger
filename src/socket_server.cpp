@@ -17,7 +17,6 @@
 #define ERROR(msg) std::cerr << "Server Error: " << msg << ". "<< strerror(errno) << std::endl;
 #define LOG(msg) std::cout << "Server Log: " << msg << std::endl;
 
-MessageQueue messageQueue;
 
 void listener(int client_sock_fd) //amen angam nor kpneluc asum a es clienty kpel a
 {
@@ -61,6 +60,7 @@ void listener(int client_sock_fd) //amen angam nor kpneluc asum a es clienty kpe
     memset(buf, 0, buflen);
     strcpy(buf, "OK");
     send(client_sock_fd, buf, strlen(buf), 0);
+    changeUserStatus(username, true);
 
     while (1)
     {
@@ -68,40 +68,66 @@ void listener(int client_sock_fd) //amen angam nor kpneluc asum a es clienty kpe
         if (recv(client_sock_fd, buf, buflen, 0) == -1)
         {
             ERROR("Cannot receive");
-            return;
+            break;
         }
         message = buf;
+        if (message.size() == 0)
+        {
+            break;
+        }
+        
+        std::cout << "client" + message<<std::endl;
+        std::string response = "";
         if (message == "get")
         {
-            std::string response = "";
             for(auto pair: getMessages(username))
             {
                 response += pair.first;
                 response += ": ";
-                response += pair.second;
+                response += pair.second; 
                 response += "\n";
             }
             memset(buf, 0, buflen);
             strcpy(buf, response.c_str());
             send(client_sock_fd, buf, buflen, 0);
-            continue;
         }
-        message = username + "\n" + message; 
-        messageQueue.AddMessage(message);
-
+        else if (message == "get_notifications")
+        {
+            std::cerr << "getting notifications" << std::endl;
+            std::queue<SocketMessage> notifications = MessageQueue::messageQueue->getNotifications(username);
+            std::cerr << "got " << notifications.size() << " notifications" << std::endl;
+            std::string notificationMsg = "notifications: ";
+            while (!notifications.empty())
+            {
+                notificationMsg += notifications.front().toString();
+                notificationMsg += "\n\n";
+                notifications.pop();
+            }
+            std::cerr << "Notification Message " << notificationMsg << std::endl;
+            response = notificationMsg;
+        }
+        else
+        {
+            message = username + "\n" + message; 
+            MessageQueue::messageQueue->addMessage(message);
+            response = "OK";
+        }
         memset(buf, 0, buflen);
-        strcpy(buf, "OK");
+        strcpy(buf, response.c_str());
         send(client_sock_fd, buf, strlen(buf), 0);
     }
     
+    changeUserStatus(username, false);
     shutdown(client_sock_fd, SHUT_RDWR);
     close(client_sock_fd);
 }
 
 int main()
 { 
+    srand(time(NULL));
     Connection("db.sqlite", true);
-    messageQueue.RegisterHandler(&storeMessage);
+    MessageQueue::messageQueue->registerHandler(&storeMessage);
+    MessageQueue::messageQueue->registerHandler(&sendNotification);
     int socket_fd = socket(AF_INET, SOCK_STREAM, 0);
     if(socket_fd == -1)
     {

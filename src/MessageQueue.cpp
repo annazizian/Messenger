@@ -5,12 +5,17 @@
 #include <condition_variable>
 #include <iostream>
 
+
+MessageQueue* MessageQueue::messageQueue = new MessageQueue();
+
 void callHandlers(MessageQueue* mq) 
 {
-    std::unique_lock<std::mutex> m(mq->m);
     while (true)
     {
+        std::cerr << "Before unique lock" << std::endl;
+        std::unique_lock<std::mutex> m(mq->m);
         mq->cv.wait(m);
+        std::cerr << "Got message wait()" << std::endl;
         std::string plain_msg = mq->messages.front();
         SocketMessage msg;
         try
@@ -19,6 +24,13 @@ void callHandlers(MessageQueue* mq)
         }
         catch(const std::exception& e)
         {
+            std::cerr << e.what() << " Parse" << std::endl;
+            m.unlock();
+            continue;
+        }
+        catch(char const *e)
+        {
+            std::cerr << e << " Parse" << std::endl;
             m.unlock();
             continue;
         }
@@ -27,25 +39,39 @@ void callHandlers(MessageQueue* mq)
         m.unlock();
 		for (MessageHandler handler : mq->handlers) 
         {
-			handler(msg);
+            try
+            {
+                handler(msg);
+            }
+            catch(const std::exception& e)
+            {
+                std::cerr << e.what() << "handler \n";
+            }
+	        catch(char const *e)
+            {
+                std::cerr << e << "handler \n";
+            }
 		}
     }
 }
 
 MessageQueue::MessageQueue() : t(callHandlers, this) 
 {
+    std::cerr << "Iniit message queue" << std::endl;
 }
 
-void MessageQueue::AddMessage(std::string message) 
+void MessageQueue::addMessage(std::string message) 
 {
-    std::unique_lock<std::mutex> m(this->m);
-    m.lock();
-    messages.push(message);
+    std::cerr << "Add Message" << std::endl;
+    {
+        std::lock_guard<std::mutex> m(this->m);
+        messages.push(message);
+    }
+    std::cerr << "Notify" << std::endl;
     cv.notify_one();
-    m.unlock();
 }
 
-void MessageQueue::RegisterHandler(MessageHandler handler) 
+void MessageQueue::registerHandler(MessageHandler handler) 
 {
     handlers.insert(handler);
 }
@@ -59,6 +85,7 @@ SocketMessage MessageQueue::parse(std::string message)
                 1689465135
                 barev :D
     */
+    std::cerr << "Message to parse: " << message << std::endl;
     if (message.find('\n') == std::string::npos)
     {
         throw "Wrong format";
@@ -69,23 +96,53 @@ SocketMessage MessageQueue::parse(std::string message)
     {
         throw "Wrong format";
     }
-    int zZzZz = message.find('\n');
+    int zZzZz = message.find('\n', ind + 1);
     socketMessage.reciever = message.substr(ind + 1, zZzZz - ind - 1); 
     if (message.find('\n', zZzZz + 1) == std::string::npos)
     {
         throw "Wrong format";
     }
     int ind2 = message.find("\n", zZzZz + 1);
+    std::cerr << "Timestamp:" << message.substr(zZzZz + 1, ind2 - zZzZz - 1) << std::endl;
     try
     {
         socketMessage.timestamp = std::stoi(message.substr(zZzZz + 1, ind2 - zZzZz - 1)); // stoi - string to int   
     }
-    catch(const std::runtime_error& e)
+    catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cerr << e.what() << " timestamp\n";
         throw "Wrong format";
     }
     
     socketMessage.content = message.substr(ind2 + 1);
     return socketMessage;
+}
+
+void MessageQueue::addNotification(SocketMessage socketMessage)
+{
+    std::lock_guard<std::mutex> m(this->notificationMutex);
+    userNotifications[socketMessage.reciever].push(socketMessage);
+}
+
+std::queue<SocketMessage> MessageQueue::getNotifications(std::string username)
+{
+    std::lock_guard<std::mutex> m(this->notificationMutex);
+    std::queue<SocketMessage> ret;
+    while (!userNotifications[username].empty())
+    {
+        ret.push(userNotifications[username].front());
+        userNotifications[username].pop();
+    }
+    return ret;
+} 
+
+std::string SocketMessage::toString()
+{
+    /*
+        e.g.    sender_username
+                reciever_username
+                1689465135
+                barev :D
+    */
+    return this->sender + "\n" + this->reciever + "\n" + std::to_string(this->timestamp) + "\n" + this->content;
 }

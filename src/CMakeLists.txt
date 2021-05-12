@@ -29,6 +29,7 @@ add_executable(socket_client socket_client.cpp)
 #### Thread
 if (UNIX)
     target_link_libraries(socket_server PRIVATE Threads::Threads)
+    target_link_libraries(socket_client PRIVATE Threads::Threads)
 endif (UNIX)
 #### Thread ####
 

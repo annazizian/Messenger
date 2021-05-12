@@ -24,10 +24,3 @@ CREATE TABLE user_group (
     groupId INT NOT NULL FOREIGN KEY REFERENCES group(groupID),
     CONSTRAINT user_groupID PRIMARY KEY (userID, groupID)
 );
-
-CREATE TABLE user_to_group (
-	Id INT NOT NULL PRIMARY KEY IDENTITY(0,1),
-    senderID INT NOT NULL FOREIGN KEY REFERENCES user(ID),
-    recieverID INT NOT NULL FOREIGN KEY REFERENCES group(groupID),
-	messageID INT NOT NULL FOREIGN KEY REFERENCES message(messageID)
-);

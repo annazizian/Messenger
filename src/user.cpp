@@ -21,3 +21,19 @@ bool user_exists(std::string username)
         return true;
     return false;
 }
+
+bool user_online(std::string username)
+{
+    messenger::User u;
+    auto &db = *(Connection().get_db());
+    for (const auto& row :  db(select(u.status).from(u).where(u.username == username)))
+        return row.status;
+    return false;
+}
+
+void changeUserStatus(std::string username, bool status) 
+{
+    messenger::User u;
+    auto &db = *(Connection().get_db());
+    db(update(u).set(u.status = status).where(u.username == username));
+}
