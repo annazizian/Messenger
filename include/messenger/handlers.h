@@ -1,5 +1,6 @@
 #pragma once
 #include <messenger/MessageQueue.h>
+#include <socket_parser/message_parser.h>
 
-void sendNotification(SocketMessage message);
-void storeMessage(SocketMessage message);
+void sendNotification(SocketParser::Message message);
+void storeMessage(SocketParser::Message message);

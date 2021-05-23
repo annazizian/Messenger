@@ -1,20 +1,27 @@
 #include <messenger/handlers.h>
 #include <messenger/user.h>
 #include <messenger/message.h>
+#include <messenger/groups.h>
 
-void sendNotification(SocketMessage message)
+void sendNotification(SocketParser::Message message)
 {
-    if (user_online(message.reciever))
+    std::vector<std::string> vec;
+    if (user_exists(message.reciever))
+        vec.push_back(message.reciever);
+    else
+        vec = getUsersFromGroup(message.reciever);
+    for (std::string reciever : vec)
     {
-        MessageQueue::messageQueue->addNotification(message);
+        std::cerr << "Notifying user: " << reciever << std::endl;
+        if (user_online(reciever))
+        {
+            std::cerr << "Notification: " << reciever << "  " << message.sender << " " << message.content << std::endl;
+            MessageQueue::messageQueue->addNotification(message, reciever);
+        }
     }
 }
 
-void storeMessage(SocketMessage message)
+void storeMessage(SocketParser::Message message)
 {
-    if (!user_exists(message.reciever))
-    {
-        throw "Wrong reciever";
-    }
-    sendMessage(message.content, message.reciever, message.sender, message.timestamp);
+    sendMessage(message.content, message.reciever, message.sender, message.ts);
 } 

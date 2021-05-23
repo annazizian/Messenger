@@ -21,3 +21,9 @@ cmake ..
 make
 src/db_generator #for creating empty database
 ```
+
+### Database model generation for cpp
+
+```
+/usr/local/bin/sqlpp11-ddl2cpp messenger.ddl include/messenger/models messenger
+```

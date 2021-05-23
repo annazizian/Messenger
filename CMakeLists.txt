@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-set(CMAKE_WARN_DEPRECATED FALSE)
+add_definitions("-Wno-deprecated")
 
 #set project name
 project(Messenger)

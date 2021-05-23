@@ -7,8 +7,11 @@
 #include <messenger/connection.h>
 #include <messenger/user.h>
 #include <messenger/message.h>
+#include <messenger/groups.h>
 #include <messenger/MessageQueue.h>
 #include <messenger/handlers.h>
+
+#include <socket_parser/message_parser.h>
 
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -17,6 +20,53 @@
 #define ERROR(msg) std::cerr << "Server Error: " << msg << ". "<< strerror(errno) << std::endl;
 #define LOG(msg) std::cout << "Server Log: " << msg << std::endl;
 
+std::string processSocketMessage(std::string message, SocketParser::LoginMessageParser::LoginMessage loginMessage)
+{
+    // std::cout << "ban: " + message << std::endl;
+    if (message.size() == 0)
+    {
+        return "";
+    } 
+
+    SocketParser::GetMessageParser getMessageParser;
+    
+    if (getMessageParser.checkMessage(message))
+    {
+        SocketParser::GetMessageParser::GetMessage getMessage = getMessageParser.parse(message);
+        if (loginMessage.username != getMessage.username)
+            return "";
+        if (loginMessage.guid != getMessage.guid)
+            return "";
+        getMessage.messages = getMessages(getMessage.username, getMessage.usernameFrom);
+        return getMessageParser.parse(getMessage);
+    }
+
+    SocketParser::GetNotificationMessageParser getNotificationsMessageParser;
+
+    if (getNotificationsMessageParser.checkMessage(message))
+    {
+        SocketParser::GetNotificationMessageParser::GetNotificationMessage getNotificationsMessage
+            = getNotificationsMessageParser.parse(message);
+        // std::cerr << "Got notification request: " << getNotificationsMessage.username << " with guid "
+        //           << getNotificationsMessage.guid << std::endl;
+        if (loginMessage.username != getNotificationsMessage.username)
+        {
+            std::cerr << "Wrong username" << std::endl;
+            return "";
+        }
+        if (loginMessage.guid != getNotificationsMessage.guid)
+        {
+            std::cerr << "Wrong guid" << std::endl;
+            return "";
+        }
+        getNotificationsMessage.messages = MessageQueue::messageQueue->getNotifications(loginMessage.username);
+        // std::cerr << "resp: " << getNotificationsMessageParser.parse(getNotificationsMessage) << std::endl;
+        return getNotificationsMessageParser.parse(getNotificationsMessage);
+    }
+
+    MessageQueue::messageQueue->addMessage(message, loginMessage);
+    return "OK";
+}
 
 void listener(int client_sock_fd) //amen angam nor kpneluc asum a es clienty kpel a
 {
@@ -30,11 +80,9 @@ void listener(int client_sock_fd) //amen angam nor kpneluc asum a es clienty kpe
     }
 
     LOG(buf);
-
-    std::string username = "", guid = "", message = buf;
-
-    if (message.find(' ') == std::string::npos) //aysinqn username chenq stacel
-    {
+    SocketParser::LoginMessageParser loginMessageParser;
+    std::string message = buf;
+    if (!loginMessageParser.checkMessage(message)){
         ERROR("Wrong format");
         memset(buf, 0, buflen);
         strcpy(buf, "Wrong format");
@@ -43,11 +91,9 @@ void listener(int client_sock_fd) //amen angam nor kpneluc asum a es clienty kpe
         close(client_sock_fd);
         return;
     }
-    //stacel enq username
-    int ind = message.find(' ');
-    username = message.substr(0, ind);
-    guid = message.substr(ind + 1);
-    if (!exist_or_create_user(username, guid))
+    SocketParser::LoginMessageParser::LoginMessage loginMessage = loginMessageParser.parse(message);
+    std::cerr << "Logged in " << loginMessage.username << " With guid: " << loginMessage.guid << std::endl;
+    if (!exist_or_create_user(loginMessage.username, loginMessage.guid))
     {
         ERROR("Wrong guid");
         memset(buf, 0, buflen);
@@ -60,8 +106,9 @@ void listener(int client_sock_fd) //amen angam nor kpneluc asum a es clienty kpe
     memset(buf, 0, buflen);
     strcpy(buf, "OK");
     send(client_sock_fd, buf, strlen(buf), 0);
-    changeUserStatus(username, true);
-
+    changeUserStatus(loginMessage.username, true);
+    for (std::string groupId: getGroupsOfUser(loginMessage.username))
+        changeGroupStatus(groupId, true);
     while (1)
     {
         memset(buf, 0, buflen);
@@ -70,54 +117,21 @@ void listener(int client_sock_fd) //amen angam nor kpneluc asum a es clienty kpe
             ERROR("Cannot receive");
             break;
         }
-        message = buf;
+        message = processSocketMessage(buf, loginMessage);
         if (message.size() == 0)
         {
-            break;
-        }
-        
-        std::cout << "client" + message<<std::endl;
-        std::string response = "";
-        if (message == "get")
-        {
-            for(auto pair: getMessages(username))
-            {
-                response += pair.first;
-                response += ": ";
-                response += pair.second; 
-                response += "\n";
-            }
-            memset(buf, 0, buflen);
-            strcpy(buf, response.c_str());
-            send(client_sock_fd, buf, buflen, 0);
-        }
-        else if (message == "get_notifications")
-        {
-            std::cerr << "getting notifications" << std::endl;
-            std::queue<SocketMessage> notifications = MessageQueue::messageQueue->getNotifications(username);
-            std::cerr << "got " << notifications.size() << " notifications" << std::endl;
-            std::string notificationMsg = "notifications: ";
-            while (!notifications.empty())
-            {
-                notificationMsg += notifications.front().toString();
-                notificationMsg += "\n\n";
-                notifications.pop();
-            }
-            std::cerr << "Notification Message " << notificationMsg << std::endl;
-            response = notificationMsg;
-        }
-        else
-        {
-            message = username + "\n" + message; 
-            MessageQueue::messageQueue->addMessage(message);
-            response = "OK";
+            break; 
         }
         memset(buf, 0, buflen);
-        strcpy(buf, response.c_str());
+        strcpy(buf, message.c_str());
         send(client_sock_fd, buf, strlen(buf), 0);
     }
-    
-    changeUserStatus(username, false);
+    std::cerr << "closing: " << client_sock_fd << std::endl;
+
+    for (std::string groupId: getGroupsOfUser(loginMessage.username))
+        changeGroupStatus(groupId, isGroupActive(groupId));
+
+    changeUserStatus(loginMessage.username, false);
     shutdown(client_sock_fd, SHUT_RDWR);
     close(client_sock_fd);
 }

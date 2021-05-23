@@ -6,10 +6,18 @@ add_library(
     message.cpp
     MessageQueue.cpp
     handlers.cpp
+    groups.cpp
 )
-target_include_directories(messenger PUBLIC ../include)
 
-target_link_libraries(messenger PRIVATE sqlpp11 sqlpp11-connector-sqlite3)
+add_library(
+    socket_parser
+    message_parser.cpp
+)
+
+target_include_directories(messenger PUBLIC ../include)
+target_include_directories(socket_parser PUBLIC ../include)
+
+target_link_libraries(messenger PRIVATE sqlpp11 sqlpp11-connector-sqlite3 socket_parser)
 
 add_executable(db_generator db_generator.cpp)
 
@@ -33,4 +41,5 @@ if (UNIX)
 endif (UNIX)
 #### Thread ####
 
-target_link_libraries(socket_server PUBLIC messenger)
+target_link_libraries(socket_server PUBLIC messenger socket_parser)
+target_link_libraries(socket_client PUBLIC socket_parser)

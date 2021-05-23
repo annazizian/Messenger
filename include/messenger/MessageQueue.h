@@ -8,35 +8,27 @@
 #include <condition_variable>
 #include <unordered_map>
 
-struct SocketMessage
-{
-	std::string sender;
-	std::string reciever;
-	std::string content;
-	int timestamp;
-    std::string toString();
-};
+#include <socket_parser/message_parser.h>
 
-typedef void (*MessageHandler)(SocketMessage message);
+typedef void (*MessageHandler)(SocketParser::Message message);
 
 class MessageQueue 
 {
 public:
     MessageQueue();
-    void addMessage(std::string message);
+    void addMessage(std::string message, SocketParser::LoginMessageParser::LoginMessage loginMessage);
     void registerHandler(MessageHandler handler); 
-    void addNotification(SocketMessage socketMessage);
-    std::queue<SocketMessage> getNotifications(std::string username); 
+    void addNotification(SocketParser::Message socketMessage, std::string reciever);
+    std::vector<SocketParser::Message> getNotifications(std::string username); 
     static MessageQueue* messageQueue;
 private:
-    std::queue<std::string> messages;
+    std::queue<std::pair<std::string, SocketParser::LoginMessageParser::LoginMessage> > messages;
     std::set<MessageHandler> handlers;
     std::mutex m; 
     std::mutex notificationMutex;
     std::thread t;
     std::condition_variable cv;
     friend void callHandlers(MessageQueue* mq);
-	SocketMessage parse(std::string message);
     // notifications for each person - key:username, value:queue of socket-messages
-    std::unordered_map<std::string, std::queue<SocketMessage> > userNotifications;
+    std::unordered_map<std::string, std::queue<SocketParser::Message> > userNotifications;
 };
