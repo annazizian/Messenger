@@ -3,28 +3,38 @@
 
 std::string SocketParser::split(char splitChar, std::string& message)
 {
-    auto res = message.find(splitChar);
+    // split the message into two parts using the first occurence of the splitChar
+    // (which is basically a backslash: \)
+    size_t res = message.find(splitChar);   // find the index 
     std::string firstPart = "";
-    if (res == std::string::npos)
+    if (res == std::string::npos)   // if not found
     {
-        swap(firstPart, message);
+        swap(firstPart, message); // then the result is (whole message, "")
+        // e.g. "ASDF" will be splitted into ("ASDF", "")
     }
     else
     {
-        int ind = res;
+        int ind = res; // if found
         firstPart = message.substr(0, ind);
         message = message.substr(ind + 1);
+        // the result is (message before splitChar, message after first splitChar)
+        // e.g. "A\B\C" will be splitted into ("A", "B\C")
     }
     return firstPart;
+    // The first result will be returned
+    // and the remaining part will be stored in the message variable
 }
+
 
 std::string SocketParser::Message::parse()
 {
+    // This method will parse a single message into a string
     return this->sender + '\\' + this->reciever + '\\' + std::to_string(this->ts) + '\\' + this->content;
 }
 
 SocketParser::Message SocketParser::Message::getMessage(std::string& message)
 {
+    // this method will get the first Message from the message list
     Message msg;
     msg.sender = SocketParser::split('\\', message);
     msg.reciever = SocketParser::split('\\', message);
@@ -35,11 +45,13 @@ SocketParser::Message SocketParser::Message::getMessage(std::string& message)
 
 bool SocketParser::MessageParser::checkMessage(std::string message)
 {
+    // This method will be called for a dervied class to check if the message is for that command
     return message.substr(0, this->prefix.size()) == this->prefix;
 }
 
+// Here the message prefixes and types are given for each command
 const std::string SocketParser::GetMessageParser::_prefix = "Get Message: ";
-const SocketParser::MessageType SocketParser::GetMessageParser::messageType = SocketParser::MessageType::GET;
+const SocketParser::MessageType SocketParser::GetMessageParser::messageType = SocketParser::GET;
 
 SocketParser::GetMessageParser::GetMessageParser() : SocketParser::GetMessageParser(SocketParser::GetMessageParser::_prefix){}
 SocketParser::GetMessageParser::GetMessageParser(std::string prefix)
@@ -49,6 +61,12 @@ SocketParser::GetMessageParser::GetMessageParser(std::string prefix)
 
 std::string SocketParser::GetMessageParser::parse(SocketParser::GetMessageParser::GetMessage getMessage)
 {
+    // Parse the GetMessage struct into a string to send via socket
+    // e.g. Messages from "Poxos" "Hello" at 1610000000
+    //      and "How are you" at 1610000001 will be parsed into the following string
+    //      and your response "Hi, fine, and you?" at 1610000002
+    // "Get Message: yourUsername\yourGuid\Poxos\Poxos\yourUsername\1610000000\Hello\Poxos\yourUsername\1610000001\How are you\yourUsername\Poxos\1610000002\Hi, fine, and you?"
+    // The string above will be easily(not much) parsed back via parser below
     std::string ret = this->prefix + getMessage.username + "\\" + getMessage.guid + '\\' + getMessage.usernameFrom;
     for (SocketParser::Message msg: getMessage.messages)
     {
@@ -59,6 +77,8 @@ std::string SocketParser::GetMessageParser::parse(SocketParser::GetMessageParser
 
 SocketParser::GetMessageParser::GetMessage SocketParser::GetMessageParser::parse(std::string message)
 {
+    // Parse the message from the socket into a GetMessage struct
+    // You'll be able to see the messages using simple cpp structs 
     SocketParser::GetMessageParser::GetMessage getMessage;
     message = message.substr(this->prefix.size());
     getMessage.username = SocketParser::split('\\', message);
@@ -72,7 +92,7 @@ SocketParser::GetMessageParser::GetMessage SocketParser::GetMessageParser::parse
 }
 
 const std::string SocketParser::GetNotificationMessageParser::_prefix = "Get Notifications: ";
-const SocketParser::MessageType SocketParser::GetNotificationMessageParser::messageType = SocketParser::MessageType::GET_NOTIFICATION;
+const SocketParser::MessageType SocketParser::GetNotificationMessageParser::messageType = SocketParser::GET_NOTIFICATION;
 
 SocketParser::GetNotificationMessageParser::GetNotificationMessageParser():SocketParser::GetNotificationMessageParser(SocketParser::GetNotificationMessageParser::_prefix)
 {
@@ -83,6 +103,8 @@ SocketParser::GetNotificationMessageParser::GetNotificationMessageParser(std::st
 {
     this->prefix = prefix;
 }
+
+// parsers below are very similar to the two parsers above
 
 std::string SocketParser::GetNotificationMessageParser::parse(SocketParser::GetNotificationMessageParser::GetNotificationMessage getNotificationMessage)
 {
@@ -108,7 +130,7 @@ SocketParser::GetNotificationMessageParser::GetNotificationMessage SocketParser:
 }
 
 const std::string SocketParser::SendMessageParser::_prefix = "Send: ";
-const SocketParser::MessageType SocketParser::SendMessageParser::messageType = SocketParser::MessageType::SEND;
+const SocketParser::MessageType SocketParser::SendMessageParser::messageType = SocketParser::SEND;
 
 SocketParser::SendMessageParser::SendMessageParser() : SocketParser::SendMessageParser(SocketParser::SendMessageParser::_prefix)
 {
@@ -140,7 +162,7 @@ SocketParser::SendMessageParser::SendMessage SocketParser::SendMessageParser::pa
 }
 
 const std::string SocketParser::CreateGroupMessageParser::_prefix = "Create group: ";
-const SocketParser::MessageType SocketParser::CreateGroupMessageParser::messageType = SocketParser::MessageType::CREATE_GROUP;
+const SocketParser::MessageType SocketParser::CreateGroupMessageParser::messageType = SocketParser::CREATE_GROUP;
 
 SocketParser::CreateGroupMessageParser::CreateGroupMessageParser(): SocketParser::CreateGroupMessageParser(SocketParser::CreateGroupMessageParser::_prefix){}
 
@@ -165,7 +187,7 @@ SocketParser::CreateGroupMessageParser::CreateGroupMessage SocketParser::CreateG
 }
 
 const std::string SocketParser::AddUserToGroupMessageParser::_prefix = "Add user to the group: ";
-const SocketParser::MessageType SocketParser::AddUserToGroupMessageParser::messageType = SocketParser::MessageType::ADD_USER_TO_GROUP;
+const SocketParser::MessageType SocketParser::AddUserToGroupMessageParser::messageType = SocketParser::ADD_USER_TO_GROUP;
 
 SocketParser::AddUserToGroupMessageParser::AddUserToGroupMessageParser(): SocketParser::AddUserToGroupMessageParser(SocketParser::AddUserToGroupMessageParser::_prefix){}
 
@@ -191,7 +213,7 @@ SocketParser::AddUserToGroupMessageParser::AddUserToGroupMessage SocketParser::A
 }
 
 const std::string SocketParser::LoginMessageParser::_prefix = "Login: ";
-const SocketParser::MessageType SocketParser::LoginMessageParser::messageType = SocketParser::MessageType::LOGIN;
+const SocketParser::MessageType SocketParser::LoginMessageParser::messageType = SocketParser::LOGIN;
 
 SocketParser::LoginMessageParser::LoginMessageParser(): SocketParser::LoginMessageParser::LoginMessageParser(SocketParser::LoginMessageParser::_prefix){}
 SocketParser::LoginMessageParser::LoginMessageParser(std::string prefix)

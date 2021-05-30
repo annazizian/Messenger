@@ -15,14 +15,14 @@ void callHandlers(MessageQueue* mq)
 {
     while (true)
     {
-        std::cerr << "Before unique lock" << std::endl;
         std::unique_lock<std::mutex> m(mq->m);
         mq->cv.wait(m);
-        std::cerr << "Got message wait()" << std::endl;
+        // get commands from the queue
         std::string plain_msg = mq->messages.front().first;
         SocketParser::LoginMessageParser::LoginMessage loginMessage = mq->messages.front().second;
         mq->messages.pop();
         m.unlock();
+        // if the user wanted to create a group
         SocketParser::CreateGroupMessageParser createGroupMessageParser;
         std::cerr << "Action plain msg: " << plain_msg << std::endl;
         if (createGroupMessageParser.checkMessage(plain_msg))
@@ -35,11 +35,13 @@ void callHandlers(MessageQueue* mq)
                     std::cerr << "Create group: wrong username or guid" << std::endl;
                     continue;
                 }
+            // create the group and add the creator to the group
             std::string id = createGroup(createGroupMessage.groupName); 
             addUserToGroup(loginMessage.username, id);
             continue;
         }
         
+        // if the user wants to add a new member to the group
         SocketParser::AddUserToGroupMessageParser addUserToGroupMessageParser;
         if (addUserToGroupMessageParser.checkMessage(plain_msg))
         {
@@ -51,11 +53,13 @@ void callHandlers(MessageQueue* mq)
                     std::cerr << "Create group: wrong username or guid" << std::endl;
                     continue;
                 }
+            // check if the user belongs to the group
             std::string groupId = getGroupIdFromGroupName(addUserToGroupMessage.groupName);
             for (std::string curGroupId: getGroupsOfUser(loginMessage.username))
             {
                 if (curGroupId == groupId)
                 {
+                    // if he dose: add the new user to the group
                     addUserToGroup(addUserToGroupMessage.newUser, groupId);
                     break;
                 }
@@ -63,12 +67,15 @@ void callHandlers(MessageQueue* mq)
             continue;
         }
 
+        // if the user didn't send a message either, then he did something else
+        // something we don't expect. It's an error
         SocketParser::SendMessageParser sendMessageParser;
         if (!sendMessageParser.checkMessage(plain_msg))
         {
             std::cerr << "Not send :O What could it be" << std::endl;
             continue;
         }
+
         SocketParser::SendMessageParser::SendMessage sendMessage
             = sendMessageParser.parse(plain_msg);
         if (sendMessage.username != loginMessage.username
@@ -79,6 +86,7 @@ void callHandlers(MessageQueue* mq)
             }
         if (!user_exists(sendMessage.recieverUsername))
         {
+            // if the message is sent to the group
             std::string groupId = getGroupIdFromGroupName(sendMessage.recieverUsername);
             bool ok = false;
             for (std::string curGroupId: getGroupsOfUser(loginMessage.username))
@@ -89,12 +97,15 @@ void callHandlers(MessageQueue* mq)
                     break;
                 }
             }
+            // check if user belongs to the group
             if (!ok)
             {
                 std::cerr << "You don't belong here!" << std::endl;
+                // if he doesn't, then skip this command
                 continue;
             }
         }
+        // create the message and call handlers
         SocketParser::Message message(sendMessage.username, sendMessage.recieverUsername,
             sendMessage.content, sendMessage.ts);
 		for (MessageHandler handler : mq->handlers) 

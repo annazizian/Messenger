@@ -12,9 +12,11 @@ void sendNotification(SocketParser::Message message)
         vec = getUsersFromGroup(message.reciever);
     for (std::string reciever : vec)
     {
+        // for each member of the group (or PM's reciever)
         std::cerr << "Notifying user: " << reciever << std::endl;
-        if (user_online(reciever))
+        if (reciever != message.sender && user_online(reciever))
         {
+            // check if the member is online and is not the sender, then send a notification
             std::cerr << "Notification: " << reciever << "  " << message.sender << " " << message.content << std::endl;
             MessageQueue::messageQueue->addNotification(message, reciever);
         }

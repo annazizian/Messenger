@@ -28,8 +28,9 @@ namespace SocketParser{
             : sender(sender), reciever(reciever), content(content), ts(ts)
         {
         }
-        std::string parse();
-        static Message getMessage(std::string &message);
+        std::string parse();    // es methody message-y string e sarqum
+        static Message getMessage(std::string &message);    // &message-y socketi messagena, vercnum arden dzakhic \-ov ktrtac hanats masy, minchev namakner
+        // u dzaxic arajin namakn a ktrum
     };
 
     class MessageParser

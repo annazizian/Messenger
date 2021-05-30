@@ -49,6 +49,8 @@ bool isGroupActive(std::string groupId)
     .where(ug.groupId == groupId)))
         if (row.status == true)
         {
+            // for each user in the group check if the user is online
+            // if he is, then the group is online too
             return true;
         } 
     return false;

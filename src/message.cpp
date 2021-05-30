@@ -24,6 +24,9 @@ std::vector<SocketParser::Message> getMessages(std::string username, std::string
     
     if (user_exists(usernameFrom))
     {
+        // if you want to get messages from your private chat with the user
+        // then get messages, which are sent be you and recieved by the usernameFrom
+        // or recieved by you and send by usernameFrom
         auto condition = (m.recieverUsername == usernameFrom and m.senderUsername == username)
                     or (m.senderUsername == usernameFrom and m.recieverUsername == username);
 
@@ -36,7 +39,9 @@ std::vector<SocketParser::Message> getMessages(std::string username, std::string
     }
     else
     {
+        // otherwise get chat history of the group
         bool ok = false;
+        // check if you belong to the group
         std::string groupId = getGroupIdFromGroupName(usernameFrom);
         for (std::string curGroupId: getGroupsOfUser(username))
         {
@@ -48,6 +53,7 @@ std::vector<SocketParser::Message> getMessages(std::string username, std::string
         }
         if (ok)
         {
+            // if you do, then check messages sent to the group (no matter who sent it)
             auto condition = m.recieverUsername == usernameFrom;
 
             auto query = select(m.senderUsername, m.content, m.recieverUsername, m.timestamp).from(m).where(condition)
