@@ -193,7 +193,7 @@ int main()
     SocketParser::CreateGroupMessageParser::CreateGroupMessage createGroupMessage;
     SocketParser::AddUserToGroupMessageParser::AddUserToGroupMessage addUserToGroupMessage;
 
-    // Here we set usename and guid to not do this on every messages send
+    // Here we set username and guid to not do this on every messages send
     getNotificationMessage.username = loginMessage.username;
     getNotificationMessage.guid = loginMessage.guid;
     getMessage.username = loginMessage.username;
